@@ -1,0 +1,651 @@
+CREATE A REPOSITORY- GIT INIT
+Cmd < Documents vinsol$ cd git_exercise_2
+Inside Repository  :  git init
+Initialized empty Git repository in /Users/vinsol/Documents/git_exercise_2/.git/
+
+MAKE SOME CHANGES -- ADD SOME FILES, CHANGE CONTENT OF SOME FILES - git add , git status
+Inside Repository  :  git status
+# On branch master
+# Initial commit
+# Untracked files:
+#   (use "git add <file>..." to include in what will be committed)
+#	leve2_git_ff.txt
+#	level2_git_sf.txt
+nothing added to commit but untracked files present (use "git add" to track)
+Inside Repository  :  git add .
+
+COMMIT CHANGES - git commit -m "Message"
+Inside Repository  :  git commit -am "Initial Commit. ADdition of files into repository"
+[master (root-commit) c08e090] Initial Commit. ADdition of files into repository
+ 2 files changed, 6 insertions(+)
+ create mode 100644 leve2_git_ff.txt
+ create mode 100644 level2_git_sf.txt
+Inside Repository  :  git status
+# On branch master
+nothing to commit (working directory clean)
+
+REPEAT STEPS 1-3 FOR 2 MORE TIMES. TRY TO REMOVE AND IGNORE SOME FILES . USE GIT DIFF BEFORE EACH COMMIT.
+For chagnge in file - vi filename 
+For Removing File - git rm filename
+For Ignore Files - create a .gitignore file and enter the name of the file in repo that needs to be ignored
+example:
+Inside Repository  :  git status
+# On branch master
+nothing to commit (working directory clean)
+Inside Repository  :  vi level2_git_sf.txt Inside Repository  :  git status
+# On branch master
+# Changes not staged for commit:
+#   (use "git add <file>..." to update what will be committed)
+#   (use "git checkout -- <file>..." to discard changes in working directory)
+#	modified:   level2_git_sf.txt
+no changes added to commit (use "git add" and/or "git commit -a")
+Inside Repository  :  git commit -am "changes to Secondary file.text"
+[master 142a415] changes to Secondary file.text
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+Inside Repository  :  git status
+# On branch master
+nothing to commit (working directory clean)
+Inside Repository  :  git log --oneline
+142a415 changes to Secondary file.text
+c08e090 Initial Commit. ADdition of files into repository
+Inside Repository  :  vi log
+Inside Repository  :  git status
+# On branch master
+# Untracked files:
+#   (use "git add <file>..." to include in what will be committed)
+#	.DS_Store	log
+nothing added to commit but untracked files present (use "git add" to track)
+Inside Repository  :  vi .gitignore
+Inside Repository  :  git status
+# On branch master
+# Untracked files:
+#   (use "git add <file>..." to include in what will be committed)
+#	.gitignore
+nothing added to commit but untracked files present (use "git add" to track)
+Inside Repository  :  vi file_to_delete
+Inside Repository  :  git status
+# On branch master
+# Untracked files:
+#   (use "git add <file>..." to include in what will be committed)
+#	.gitignore
+#	file_to_delete
+nothing added to commit but untracked files present (use "git add" to track)
+Inside Repository  :  git diff
+Inside Repository  :  git log --oneline
+142a415 changes to Secondary file.text
+c08e090 Initial Commit. ADdition of files into repository
+Inside Repository  :  git diff c08e090..142a415
+diff --git a/level2_git_sf.txt b/level2_git_sf.txt
+index 661325a..ae1b566 100644
+--- a/level2_git_sf.txt
++++ b/level2_git_sf.txt
+@@ -1,3 +1,3 @@
+ Second Level Exercise
+-This is the Second File of level 2 exercise
+\ No newline at end of file
++This is the Second File of level 2 exercise of git.
+Inside Repository  :  git add .
+Inside Repository  :  git commit -m "Addition of .gitingnore and file_to_delete file in repo"
+[master 9cf48d2] Addition of .gitingnore and file_to_delete file in repo
+ 2 files changed, 5 insertions(+)
+ create mode 100644 .gitignore
+ create mode 100644 file_to_delete
+Inside Repository  :  git status
+# On branch master
+nothing to commit (working directory clean)
+Inside Repository  :  git log --oneline
+9cf48d2 Addition of .gitingnore and file_to_delete file in repo
+142a415 changes to Secondary file.text
+c08e090 Initial Commit. ADdition of files into repository
+Inside Repository  :  git rm file_to_delete
+rm 'file_to_delete'
+Inside Repository  :  git status
+# On branch master
+# Changes to be committed:
+#   (use "git reset HEAD <file>..." to unstage)
+#
+#	deleted:    file_to_delete
+#
+Inside Repository  :  git commit -m "File Deleted Sucessfully"
+[master c67c939] File Deleted Sucessfully
+ 1 file changed, 2 deletions(-)
+ delete mode 100644 file_to_delete
+Inside Repository  :  git log --oneline
+c67c939 File Deleted Sucessfully
+9cf48d2 Addition of .gitingnore and file_to_delete file in repo
+142a415 changes to Secondary file.text
+c08e090 Initial Commit. ADdition of files into repository
+
+CREATE CHANGES AND REVERT THOSE CHANGES USING GIT WHEN THOSE CHANGES ARE NOT ADDED TO STAGING ARE :
+For Reverting Changes - git checkout -- filename
+Inside Repository  :  vi new_file
+Inside Repository  :  git status
+# On branch master
+# Untracked files:
+#   (use "git add <file>..." to include in what will be committed)
+#	new_file
+nothing added to commit but untracked files present (use "git add" to track)
+Inside Repository  :  git add .
+Inside Repository  :  git commit -m "File to track and revert added to repo"
+[master 22ebb00] File to track and revert added to repo
+ 1 file changed, 1 insertion(+)
+ create mode 100644 new_file
+Inside Repository  :  git log --oneline
+22ebb00 File to track and revert added to repo
+c67c939 File Deleted Sucessfully
+9cf48d2 Addition of .gitingnore and file_to_delete file in repo
+142a415 changes to Secondary file.text
+c08e090 Initial Commit. ADdition of files into repository
+Inside Repository  :  vi new_file 
+Inside Repository  :  git status
+# On branch master
+# Changes not staged for commit:
+#   (use "git add <file>..." to update what will be committed)
+#   (use "git checkout -- <file>..." to discard changes in working directory)
+#	modified:   new_file
+no changes added to commit (use "git add" and/or "git commit -a")
+Inside Repository  :  git checkout -- new_file
+Inside Repository  :  git status
+# On branch master
+nothing to commit (working directory clean)
+
+CREATE CHANGES AND REVERT THOSE CHANGES AFTER ADDING CHANGES TO STAGING AREA
+For reverting changes in staging area - git reset HEAD filename
+Inside Repository  :  vi new_file 
+Inside Repository  :  git status
+# On branch master
+# Changes not staged for commit:
+#   (use "git add <file>..." to update what will be committed)
+#   (use "git checkout -- <file>..." to discard changes in working directory)
+#	modified:   new_file
+no changes added to commit (use "git add" and/or "git commit -a")
+Inside Repository  :  git add new_file
+Inside Repository  :  git status
+# On branch master
+# Changes to be committed:
+#   (use "git reset HEAD <file>..." to unstage)
+#	modified:   new_file
+Inside Repository  :  git reset HEAD new_file
+Unstaged changes after reset:
+M	new_file
+Inside Repository  :  git status
+# On branch master
+# Changes not staged for commit:
+#   (use "git add <file>..." to update what will be committed)
+#   (use "git checkout -- <file>..." to discard changes in working directory)
+#	modified:   new_file
+no changes added to commit (use "git add" and/or "git commit -a")
+Inside Repository  :  git checkout -- new_file
+Inside Repository  :  git status
+# On branch master
+nothing to commit (working directory clean)
+
+CREATE CHANGE AND REVERT THOSE CHANGES AFTER COMMITTING THOSE CHANGES .
+For reverting changes after commit there can be be the follwing options.
+	1.git revert <sha1_value | treeish >
+	2.git checkout <sha1_value | treeish >
+	3.git reset --hard|soft|mixed filename
+Inside Repository  :  vi new_file 
+Inside Repository  :  git add .
+Inside Repository  :  git commit -m "Change Has occured in new file"
+[master 1d0ebd6] Change Has occured in new file
+ 1 file changed, 1 insertion(+)
+Inside Repository  :  git status
+# On branch master
+nothing to commit (working directory clean)
+Inside Repository  :  git log --oneline
+1d0ebd6 Change Has occured in new file
+22ebb00 File to track and revert added to repo
+c67c939 File Deleted Sucessfully
+9cf48d2 Addition of .gitingnore and file_to_delete file in repo
+142a415 changes to Secondary file.text
+c08e090 Initial Commit. ADdition of files into repository
+Inside Repository  :  git reset --soft  22ebb00
+Inside Repository  :  git status
+# On branch master
+# Changes to be committed:
+#   (use "git reset HEAD <file>..." to unstage)
+#
+#	modified:   new_file
+#
+Inside Repository  :  git reset HEAD new_file
+Unstaged changes after reset:
+M	new_file
+Inside Repository  :  git status
+# On branch master
+# Changes not staged for commit:
+#   (use "git add <file>..." to update what will be committed)
+#   (use "git checkout -- <file>..." to discard changes in working directory)
+#	modified:   new_file
+no changes added to commit (use "git add" and/or "git commit -a")
+Inside Repository  :  git checkout -- new_file
+Inside Repository  :  git status
+# On branch master
+nothing to commit (working directory clean)
+
+
+DISPLAY ALL THE COMMITS .
+For Displaying Commits : git log 
+						OPTIONS used:
+						--oneline -p --summary --graph --all --decorate 
+						-number
+Inside Repository  :  git log --oneline
+22ebb00 File to track and revert added to repo
+c67c939 File Deleted Sucessfully
+9cf48d2 Addition of .gitingnore and file_to_delete file in repo
+142a415 changes to Secondary file.text
+c08e090 Initial Commit. ADdition of files into repository
+
+DISPLAY A SPECIFIC COMMIT .
+For Display a particular commit : git show sha1_value
+For Dispaly Range of Commits : git show sha1_value1..sha1_value2
+Inside Repository  :  git show 9cf48d2
+commit 9cf48d2cc6c6b4a0b9aaab0dd3ddc6e3631beda3
+Author: Dilpreet Singh <dilpreet@vinsol.com>
+Date:   Mon Jul 7 11:27:25 2014 +0530
+    Addition of .gitingnore and file_to_delete file in repo
+diff --git a/.gitignore b/.gitignore
+new file mode 100644
+index 0000000..fbc95f3
+--- /dev/null
++++ b/.gitignore
+@@ -0,0 +1,3 @@
++.DS_Store
++log
++
+diff --git a/file_to_delete b/file_to_delete
+new file mode 100644
+index 0000000..58fd301
+--- /dev/null
++++ b/file_to_delete
+@@ -0,0 +1,2 @@
++this file is created for deletion
++
+
+
+CREATE BRANCHES CALLED "FEATURE1" AND "FEATURE2" FROM MASTER. DELETE BRANCH "FEATURE2".
+For Creating branch - git checkout -b branch name or git branch 								branchname and then for switching git checkout 							branchname
+For Deleting branch - git branch -d branchname
+Inside Repository  :  git co -b feature1
+Switched to a new branch 'feature1'
+Inside Repository  :  git co master
+Switched to branch 'master'
+Inside Repository  :  git co -b feauture2
+Switched to a new branch 'feauture2'
+Inside Repository  :  git branch
+  feature1
+* feauture2
+  master
+Inside Repository  :  git co master
+Switched to branch 'master'
+Inside Repository  :  git branch -d feauture2 
+Deleted branch feauture2 (was 22ebb00).
+Inside Repository  :  git branch
+  feature1
+* master
+
+MAKE SOME COMMITS ON "FEATURE1".
+Inside Repository  :  git co feature1
+Switched to branch 'feature1'
+Inside Repository  :  vi level2_git_sf.txt 
+Inside Repository  :  git status
+# On branch feature1
+# Changes not staged for commit:
+#   (use "git add <file>..." to update what will be committed)
+#   (use "git checkout -- <file>..." to discard changes in working directory)
+#	modified:   level2_git_sf.txt
+no changes added to commit (use "git add" and/or "git commit -a")
+Inside Repository  :  git commit -am "Changes to File sf.txt in branch feature"
+[feature1 a26d365] Changes to File sf.txt in branch feature
+ 1 file changed, 2 insertions(+)
+Inside Repository  :  git log --oneline
+a26d365 Changes to File sf.txt in branch feature
+22ebb00 File to track and revert added to repo
+c67c939 File Deleted Sucessfully
+9cf48d2 Addition of .gitingnore and file_to_delete file in repo
+142a415 changes to Secondary file.text
+c08e090 Initial Commit. ADdition of files into repository
+
+MAKE SOME COMMITS ON BRANCH "MASTER".
+Inside Repository  :  git co master
+Switched to branch 'master'
+Inside Repository  :  vi level2_git_sf.txt 
+Inside Repository  :  git status
+# On branch master
+# Changes not staged for commit:
+#   (use "git add <file>..." to update what will be committed)
+#   (use "git checkout -- <file>..." to discard changes in working directory)
+#	modified:   level2_git_sf.txt
+no changes added to commit (use "git add" and/or "git commit -a")
+Inside Repository  :  git commit -am "Some additional Changes in File sf.text in branch master"
+[master 4f03bb7] Some additional Changes in File sf.text in branch master
+ 1 file changed, 1 insertion(+)
+Inside Repository  :  git log --oneline
+4f03bb7 Some additional Changes in File sf.text in branch master
+22ebb00 File to track and revert added to repo
+c67c939 File Deleted Sucessfully
+9cf48d2 Addition of .gitingnore and file_to_delete file in repo
+142a415 changes to Secondary file.text
+c08e090 Initial Commit. ADdition of files into repository
+
+
+MERGE BRANCH "FEATURE1" IN "MASTER" (MAKE SOME CONFLICTS BY CHANGING SAME FILE ON SAME LINE IN BOTH THE BRANCHES) .CREATE BRANCH "FEATURE2" FROM MASTER .
+For merging a branch into master : git merge branch_name
+If there is no conflicts smooth merging will take place otherwise it will say to resolve the conflicts then only merging can take place.
+Inside Repository  :  git merge feature1 
+Auto-merging level2_git_sf.txt
+CONFLICT (content): Merge conflict in level2_git_sf.txt
+Automatic merge failed; fix conflicts and then commit the result.
+Inside Repository  :  git diff feature1..master 
+diff --git a/level2_git_sf.txt b/level2_git_sf.txt
+index 0512132..6a86104 100644
+--- a/level2_git_sf.txt
++++ b/level2_git_sf.txt
+@@ -1,5 +1,4 @@
+ Second Level Exercise
+
+ This is the Second File of level 2 exercise of git.
+-Some Addition Here in branch Feature
+-
++Some Additional Changes Here
+Inside Repository  :  vi level2_git_sf.txt 
+Inside Repository  :  vi status
+Inside Repository  :  git status
+# On branch master
+# Unmerged paths:
+#   (use "git add/rm <file>..." as appropriate to mark resolution)
+#	both modified:      level2_git_sf.txt
+no changes added to commit (use "git add" and/or "git commit -a")
+Inside Repository  :  git add .
+Inside Repository  :  git commit
+[master ec13f56] Merge branch 'feature1'
+Inside Repository  :  git log --oneline
+ec13f56 Merge branch 'feature1'
+4f03bb7 Some additional Changes in File sf.text in branch master
+a26d365 Changes to File sf.txt in branch feature
+22ebb00 File to track and revert added to repo
+c67c939 File Deleted Sucessfully
+9cf48d2 Addition of .gitingnore and file_to_delete file in repo
+142a415 changes to Secondary file.text
+c08e090 Initial Commit. ADdition of files into repository
+Inside Repository  :  git status
+# On branch master
+nothing to commit (working directory clean)
+
+
+MAKE SOME COMMITS ON "FEATURE2".
+Inside Repository  :  git co -b feature2
+Switched to a new branch 'feature2'
+Inside Repository  :  vi level2_git_ff.txt 
+Inside Repository  :  git status
+# On branch feature2
+nothing to commit (working directory clean)
+Inside Repository  :  ls -la
+total 56
+drwxr-xr-x   9 vinsol  staff   306 Jul  7 12:07 .
+drwx------+ 47 vinsol  staff  1598 Jul  7 11:04 ..
+-rw-r--r--@  1 vinsol  staff  6148 Jul  7 11:16 .DS_Store
+drwxr-xr-x  14 vinsol  staff   476 Jul  7 12:07 .git
+-rw-r--r--   1 vinsol  staff    15 Jul  7 11:13 .gitignore
+-rw-r--r--@  1 vinsol  staff    70 Jul  7 11:05 leve2_git_ff.txt
+-rw-r--r--   1 vinsol  staff   130 Jul  7 12:04 level2_git_sf.txt
+-rw-r--r--   1 vinsol  staff   147 Jul  7 11:13 log
+-rw-r--r--   1 vinsol  staff    46 Jul  7 11:45 new_file
+Inside Repository  :  vi leve2_git_ff.txt 
+Inside Repository  :  git status
+# On branch feature2
+# Changes not staged for commit:
+#   (use "git add <file>..." to update what will be committed)
+#   (use "git checkout -- <file>..." to discard changes in working directory)
+#	modified:   leve2_git_ff.txt
+no changes added to commit (use "git add" and/or "git commit -a")
+Inside Repository  :  git commit -am "Changes in ff.txt in branch F2"
+[feature2 31c33bc] Changes in ff.txt in branch F2
+ 1 file changed, 2 insertions(+), 1 deletion(-)
+Inside Repository  :  git log --oneline
+31c33bc Changes in ff.txt in branch F2
+ec13f56 Merge branch 'feature1'
+4f03bb7 Some additional Changes in File sf.text in branch master
+a26d365 Changes to File sf.txt in branch feature
+22ebb00 File to track and revert added to repo
+c67c939 File Deleted Sucessfully
+9cf48d2 Addition of .gitingnore and file_to_delete file in repo
+142a415 changes to Secondary file.text
+c08e090 Initial Commit. ADdition of files into repository
+Inside Repository  :  git log --oneline master
+ec13f56 Merge branch 'feature1'
+4f03bb7 Some additional Changes in File sf.text in branch master
+a26d365 Changes to File sf.txt in branch feature
+22ebb00 File to track and revert added to repo
+c67c939 File Deleted Sucessfully
+9cf48d2 Addition of .gitingnore and file_to_delete file in repo
+142a415 changes to Secondary file.text
+c08e090 Initial Commit. ADdition of files into repository
+Inside Repository  :  vi level2_git_sf.txt 
+Inside Repository  :  git status
+# On branch feature2
+# Changes not staged for commit:
+#   (use "git add <file>..." to update what will be committed)
+#   (use "git checkout -- <file>..." to discard changes in working directory)
+#	modified:   level2_git_sf.txt
+no changes added to commit (use "git add" and/or "git commit -a")
+Inside Repository  :  git commit -m "Some Changes in Second.txt in branch F2"
+# On branch feature2
+# Changes not staged for commit:
+#   (use "git add <file>..." to update what will be committed)
+#   (use "git checkout -- <file>..." to discard changes in working directory)
+#	modified:   level2_git_sf.txt
+no changes added to commit (use "git add" and/or "git commit -a")
+Inside Repository  :  git add .
+Inside Repository  :  git status
+# On branch feature2
+# Changes to be committed:
+#   (use "git reset HEAD <file>..." to unstage)
+#	modified:   level2_git_sf.txt
+Inside Repository  :  git commit -m "Some Changes in Second.txt in branch F2"
+[feature2 38c7c2d] Some Changes in Second.txt in branch F2
+ 1 file changed, 1 insertion(+)
+Inside Repository  :  git log --oneline
+38c7c2d Some Changes in Second.txt in branch F2
+31c33bc Changes in ff.txt in branch F2
+ec13f56 Merge branch 'feature1'
+4f03bb7 Some additional Changes in File sf.text in branch master
+a26d365 Changes to File sf.txt in branch feature
+22ebb00 File to track and revert added to repo
+c67c939 File Deleted Sucessfully
+9cf48d2 Addition of .gitingnore and file_to_delete file in repo
+142a415 changes to Secondary file.text
+c08e090 Initial Commit. ADdition of files into repository
+
+MAKE SOME COMMITS ON BRANCH "MASTER".
+Inside Repository  :  git co master
+Switched to branch 'master'
+Inside Repository  :  vi leve2_git_ff.txt 
+Inside Repository  :  git status
+# On branch master
+# Changes not staged for commit:
+#   (use "git add <file>..." to update what will be committed)
+#   (use "git checkout -- <file>..." to discard changes in working directory)
+#	modified:   leve2_git_ff.txt
+no changes added to commit (use "git add" and/or "git commit -a")
+Inside Repository  :  git commit -am "Changes in file ff.txt in branch master"
+[master 0cd30e9] Changes in file ff.txt in branch master
+ 1 file changed, 2 insertions(+), 1 deletion(-)
+Inside Repository  :  gi log --oneline
+-bash: gi: command not found
+Inside Repository  :  git log --oneline
+0cd30e9 Changes in file ff.txt in branch master
+ec13f56 Merge branch 'feature1'
+4f03bb7 Some additional Changes in File sf.text in branch master
+a26d365 Changes to File sf.txt in branch feature
+22ebb00 File to track and revert added to repo
+c67c939 File Deleted Sucessfully
+9cf48d2 Addition of .gitingnore and file_to_delete file in repo
+142a415 changes to Secondary file.text
+c08e090 Initial Commit. ADdition of files into repository
+
+REBASE BRANCH "MASTER" IN "FEATURE2" (MAKE SOME CONFLICTS BY CHANGING SAME FILE ON SAME LINE IN BOTH THE BRANCHES) .
+For rebasing branch : first switch to branch which u want to rebase.
+then : git rebase master 
+If conflict occur it will ask to resolve the conflict and then apply git rebase --continue otherwise it can be aborted using the command git rebase -- abort
+Inside Repository  :  git rebase master 
+First, rewinding head to replay your work on top of it...
+Applying: Changes in ff.txt in branch F2
+Using index info to reconstruct a base tree...
+Falling back to patching base and 3-way merge...
+Auto-merging leve2_git_ff.txt
+CONFLICT (content): Merge conflict in leve2_git_ff.txt
+Failed to merge in the changes.
+Patch failed at 0001 Changes in ff.txt in branch F2
+When you have resolved this problem run "git rebase --continue".
+If you would prefer to skip this patch, instead run "git rebase --skip".
+To check out the original branch and stop rebasing run "git rebase --abort".
+Inside Repository  :  vi leve2_git_ff.txt 
+Inside Repository  :  git rebase --continue 
+leve2_git_ff.txt: needs merge
+You must edit all merge conflicts and then
+mark them as resolved using git add
+Inside Repository  :  git status
+# Not currently on any branch.
+# Unmerged paths:
+#   (use "git reset HEAD <file>..." to unstage)
+#   (use "git add/rm <file>..." as appropriate to mark resolution)
+#	both modified:      leve2_git_ff.txt
+no changes added to commit (use "git add" and/or "git commit -a")
+Inside Repository  :  git add .
+Inside Repository  :  git rebase --continue 
+Applying: Changes in ff.txt in branch F2
+Applying: Some Changes in Second.txt in branch F2
+Inside Repository  :  git status
+# On branch feature2
+nothing to commit (working directory clean)
+Inside Repository  :  git co master
+Switched to branch 'master'
+Inside Repository  :  git log --oneline --graph --all --decorate
+* 6db76d5 (feature2) Some Changes in Second.txt in branch F2
+* fb19314 Changes in ff.txt in branch F2
+* 0cd30e9 (HEAD, master) Changes in file ff.txt in branch master
+*   ec13f56 Merge branch 'feature1'
+|\  
+| * a26d365 (feature1) Changes to File sf.txt in branch feature
+* | 4f03bb7 Some additional Changes in File sf.text in branch master
+|/  
+* 22ebb00 File to track and revert added to repo
+* c67c939 File Deleted Sucessfully
+* 9cf48d2 Addition of .gitingnore and file_to_delete file in repo
+* 142a415 changes to Secondary file.text
+* c08e090 Initial Commit. ADdition of files into repository
+
+USE GIT STASH
+For saving new stash item : git save -u "Message"
+For applying Stash item : git apply stash_value or git pop stash_value
+For Listing all the stash items : git stash list
+For droping the stash : git stash drop
+Inside Repository  :  git stash save -u  "Changes in file ff.txt is aved n stash"
+Saved working directory and index state On feature2: Changes in file ff.txt is aved n stash
+HEAD is now at 6db76d5 Some Changes in Second.txt in branch F2
+Inside Repository  :  git stash list
+stash@{0}: On feature2: Changes in file ff.txt is aved n stash
+Inside Repository  :  git stash show
+ leve2_git_ff.txt |    2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+Inside Repository  :  git stash show -p
+diff --git a/leve2_git_ff.txt b/leve2_git_ff.txt
+index 4620b0d..0d9493a 100644
+--- a/leve2_git_ff.txt
++++ b/leve2_git_ff.txt
+@@ -1,3 +1,3 @@
+ Second Level Exercise
+-
++dgadgasjhdashdj
+ This is the Fisrt file of second level exercise
+Inside Repository  :  git co master
+Switched to branch 'master'
+Inside Repository  :  git stash apply 
+Auto-merging leve2_git_ff.txt
+# On branch master
+# Changes not staged for commit:
+#   (use "git add <file>..." to update what will be committed)
+#   (use "git checkout -- <file>..." to discard changes in working directory)
+#	modified:   leve2_git_ff.txt
+no changes added to commit (use "git add" and/or "git commit -a")
+Inside Repository  :  git stash save -u "Modification in ff.txt"
+Saved working directory and index state On master: Modification in ff.txt
+HEAD is now at 0cd30e9 Changes in file ff.txt in branch master
+Inside Repository  :  git stash list
+stash@{0}: On master: Modification in ff.txt
+stash@{1}: On feature2: Changes in file ff.txt is aved n stash
+Inside Repository  :  git stash pop
+# On branch master
+# Changes not staged for commit:
+#   (use "git add <file>..." to update what will be committed)
+#   (use "git checkout -- <file>..." to discard changes in working directory)
+#	modified:   leve2_git_ff.txt
+no changes added to commit (use "git add" and/or "git commit -a")
+Dropped refs/stash@{0} (30d5a08e06f389a21e625d3ecd0edf55033fc6e4)
+Inside Repository  :  git stash list
+stash@{0}: On feature2: Changes in file ff.txt is aved n stash
+Inside Repository  :  git stash apply
+error: Your local changes to the following files would be overwritten by merge:
+	leve2_git_ff.txt
+Please, commit your changes or stash them before you can merge.
+Aborting
+Inside Repository  :  git status
+# On branch master
+# Changes not staged for commit:
+#   (use "git add <file>..." to update what will be committed)
+#   (use "git checkout -- <file>..." to discard changes in working directory)
+#	modified:   leve2_git_ff.txt
+no changes added to commit (use "git add" and/or "git commit -a")
+Inside Repository  :  git checkout -- leve2_git_ff.txt
+Inside Repository  :  git status
+# On branch master
+nothing to commit (working directory clean)
+Inside Repository  :  git stash apply
+Auto-merging leve2_git_ff.txt
+# On branch master
+# Changes not staged for commit:
+#   (use "git add <file>..." to update what will be committed)
+#   (use "git checkout -- <file>..." to discard changes in working directory)
+#	modified:   leve2_git_ff.txt
+no changes added to commit (use "git add" and/or "git commit -a")
+Inside Repository  :  git status
+# On branch master
+# Changes not staged for commit:
+#   (use "git add <file>..." to update what will be committed)
+#   (use "git checkout -- <file>..." to discard changes in working directory)
+#	modified:   leve2_git_ff.txt
+no changes added to commit (use "git add" and/or "git commit -a")
+Inside Repository  :  git stash list
+stash@{0}: On feature2: Changes in file ff.txt is aved n stash
+
+CREATE A REPOSITORY ON GITHUB FOR YOUR WORKING REPOSITORY AND PUSH CHANGES ON REMOTE REPOSITORY.
+For adding remote repository : git remote add remote_address
+The Address used to complete this exercise is https://github.com/dilpreet92/Git_exercise_2.git
+For pushing changes to remote : git remote push -u name_remote_branch name_local_branch
+Inside Repository  :  git remote add dp_git_exercise2 https://github.com/dilpreet92/Git_exercise_2.git
+Inside Repository  :  git remote
+dp_git_exercise2
+Inside Repository  :  git co master
+M	leve2_git_ff.txt
+Already on 'master'
+Inside Repository  :  git push -u dp_git_exercise2 master
+Username for 'https://github.com': dilpreet92	
+Password for 'https://dilpreet92@github.com': 
+Counting objects: 28, done.
+Delta compression using up to 4 threads.
+Compressing objects: 100% (25/25), done.
+Writing objects: 100% (28/28), 2.57 KiB, done.
+Total 28 (delta 11), reused 0 (delta 0)
+To https://github.com/dilpreet92/Git_exercise_2.git
+ * [new branch]      master -> master
+Branch master set up to track remote branch master from dp_git_exercise2.
+Inside Repository  :  git status
+# On branch master
+# Changes not staged for commit:
+#   (use "git add <file>..." to update what will be committed)
+#   (use "git checkout -- <file>..." to discard changes in working directory)
+#
+#	modified:   leve2_git_ff.txt
+#
+no changes added to commit (use "git add" and/or "git commit -a")
